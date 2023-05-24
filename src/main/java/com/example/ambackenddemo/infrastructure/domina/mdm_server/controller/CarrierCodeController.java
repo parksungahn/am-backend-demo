@@ -20,7 +20,7 @@ public class CarrierCodeController {
         this.carrierCodeService = carrierCodeService;
     }
 
-    //--전체조회 - http://localhost:8081/carrier_code
+    //--전체조회 - http://localhost:8080/carrier_code
     @GetMapping
     ResponseEntity<List<CarrierCodeResponse>> retrieves() {
         return ResponseEntity.ok(carrierCodeService.retrieves()
@@ -39,6 +39,17 @@ public class CarrierCodeController {
 //        return toResponse(carrierCodeService.save(fromRequest(request)));
 //    }
 
+
+
+
+    //--http://localhost:8080/carrier_code
+    //--post 쿼리스트링 아닌,BODY 에입력
+//    {
+//        "carrierCode":"KE"
+//            ,"icaoCarrierCode":"KE"
+//            ,"carrierCodeName":"KE"
+//            ,"remark":"hi sanpark"
+//    }
     //--신규저장2
     @PostMapping
     ResponseEntity<CarrierCodeResponse> create(@RequestBody CarrierCodeRequest request)
