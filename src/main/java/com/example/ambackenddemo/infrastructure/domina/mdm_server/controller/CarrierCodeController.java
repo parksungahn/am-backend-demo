@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.List;
 
+//--http://localhost:8081/carrier_code
 @RestController
 @RequestMapping("/carrier_code")
 public class CarrierCodeController {
@@ -21,7 +22,7 @@ public class CarrierCodeController {
 
     //--전체조회 - http://localhost:8081/carrier_code
     @GetMapping
-    ResponseEntity<List<CarrierCodeResponse>> retrieves2() {
+    ResponseEntity<List<CarrierCodeResponse>> retrieves() {
         return ResponseEntity.ok(carrierCodeService.retrieves()
                 .stream()
                 .map(CarrierCodeController::toResponse)
@@ -30,6 +31,15 @@ public class CarrierCodeController {
     }
 
 
+
+    //--신규저장1
+//    @PostMapping
+//    CarrierCodeResponse create(@RequestBody CarrierCodeRequest request)
+//    {
+//        return toResponse(carrierCodeService.save(fromRequest(request)));
+//    }
+
+    //--신규저장2
     @PostMapping
     ResponseEntity<CarrierCodeResponse> create(@RequestBody CarrierCodeRequest request)
     {
@@ -38,6 +48,13 @@ public class CarrierCodeController {
                 URI.create("/carrier_codes/" + result.carrierCode().value())
         ).body(toResponse(result));
     }
+
+
+
+
+
+
+
 
 
 
