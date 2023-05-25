@@ -9,6 +9,6 @@ public class CarrierCodeRepositoryConfig {
     @Bean
     public CarrierCodeRepository carrierCodeRepository(final CarrierCodeJpaRepository carrierCodeJpaRepository)
     {
-        return new CarrierCodeSpringDatarRepository((carrierCodeJpaRepository));
+        return new CarrierCodeSpringDatarRepository(carrierCodeJpaRepository);
     }
 }
