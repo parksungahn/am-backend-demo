@@ -1,7 +1,12 @@
 package com.example.ambackenddemo.domain.mdm;
 
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+//@Service, @Repository, @Component  //--> 대신 CarrierCodeConfig
 public class CarrierCodeServiceImpl implements CarrierCodeService{
     private final CarrierCodeRepository carrierCodeRepository;
 

@@ -3,10 +3,14 @@ package com.example.ambackenddemo.infrastructure.domina.mdm_server.persistence.c
 import com.example.ambackenddemo.domain.mdm.CarrierCode;
 import com.example.ambackenddemo.domain.mdm.CarrierCodeId;
 import com.example.ambackenddemo.domain.mdm.CarrierCodeRepository;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
 
+//@Service, @Repository, @Component 모두 Bean이 생성됨.     //--대신->CarrierCodeRepositoryConfig
 public class CarrierCodeSpringDatarRepository implements CarrierCodeRepository {
     private final CarrierCodeJpaRepository carrierCodeJpaRepository;
 
