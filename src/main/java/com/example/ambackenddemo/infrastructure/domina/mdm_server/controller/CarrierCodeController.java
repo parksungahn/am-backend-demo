@@ -3,31 +3,34 @@ package com.example.ambackenddemo.infrastructure.domina.mdm_server.controller;
 import com.example.ambackenddemo.domain.mdm.CarrierCode;
 import com.example.ambackenddemo.domain.mdm.CarrierCodeId;
 import com.example.ambackenddemo.domain.mdm.CarrierCodeService;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Objects;
 
-//--http://localhost:8081/carrier_code
+//--http://localhost:8080/carrier_code
 @RestController
 @RequestMapping("/carrier_code")
-public class CarrierCodeController {
+class CarrierCodeController {
     private final CarrierCodeService carrierCodeService;
 
     CarrierCodeController(CarrierCodeService carrierCodeService)
     {
-        this.carrierCodeService = carrierCodeService;
+        this.carrierCodeService = Objects.requireNonNull(carrierCodeService);;
     }
 
     //--전체조회 - http://localhost:8080/carrier_code
     @GetMapping
     ResponseEntity<List<CarrierCodeResponse>> retrieves() {
-        return ResponseEntity.ok(carrierCodeService.retrieves()
+        return ResponseEntity.ok(
+                carrierCodeService.retrieves()
                 .stream()
                 .map(CarrierCodeController::toResponse)
                 .toList());
-
     }
 
 
@@ -52,16 +55,39 @@ public class CarrierCodeController {
 //    }
     //--신규저장2
     @PostMapping
-    ResponseEntity<CarrierCodeResponse> create(@RequestBody CarrierCodeRequest request)
-    {
+    ResponseEntity<CarrierCodeResponse> create(@RequestBody CarrierCodeRequest request) {
         final var result = carrierCodeService.save(fromRequest(request));
         return ResponseEntity.created(
-                URI.create("/carrier_codes/" + result.carrierCode().value())
-        ).body(toResponse(result));
+                        URI.create("/carrier_codes/" + result.carrierCode().value()))
+                .body(toResponse(result));
     }
 
+    @GetMapping("/{carrierCode}")
+    ResponseEntity<CarrierCodeResponse> retrieve(@PathVariable(name = "carrierCode") final String carrierCode) {
+        return carrierCodeService.retriveById(new CarrierCodeId(carrierCode))
+                .map(CarrierCodeController::toResponse)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
 
+    @PostMapping("/{carrierCode}")
+    ResponseEntity<CarrierCodeResponse> update(@RequestBody CarrierCodeRequest request) {
+        return carrierCodeService.update(fromRequest(request))
+                .map(CarrierCodeController::toResponse)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
 
+    @DeleteMapping("/{carrierCode}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    void delete(@PathVariable(name = "carrierCode") final String carrierCode) {
+        carrierCodeService.deleteById(new CarrierCodeId(carrierCode));
+    }
+
+    @ResponseStatus(value = HttpStatus.CONFLICT)
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    void handleDuplicateCarriercode() {
+    }
 
 
 

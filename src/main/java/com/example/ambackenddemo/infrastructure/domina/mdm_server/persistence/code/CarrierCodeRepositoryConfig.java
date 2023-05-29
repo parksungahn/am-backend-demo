@@ -5,10 +5,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class CarrierCodeRepositoryConfig {
+class CarrierCodeRepositoryConfig {
     @Bean
     public CarrierCodeRepository carrierCodeRepository(final CarrierCodeJpaRepository carrierCodeJpaRepository)
     {
-        return new CarrierCodeSpringDatarRepository(carrierCodeJpaRepository);
+        return new CarrierCodeSpringDataRepository(carrierCodeJpaRepository);
     }
 }

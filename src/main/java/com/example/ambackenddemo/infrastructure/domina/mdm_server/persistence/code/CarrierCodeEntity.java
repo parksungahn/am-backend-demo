@@ -1,10 +1,13 @@
 package com.example.ambackenddemo.infrastructure.domina.mdm_server.persistence.code;
 
+import com.example.ambackenddemo.domain.mdm.CarrierCode;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
+import java.util.Objects;
+
 @Entity
-public class CarrierCodeEntity {
+class CarrierCodeEntity {
     @Id
     private String carrierCode;
     private String icaoCarrierCode;
@@ -17,10 +20,10 @@ public class CarrierCodeEntity {
     }
 
     public CarrierCodeEntity(String carrierCode, String icaoCarrierCode, String carrierCodeName, String remark) {
-        this.carrierCode = carrierCode;
-        this.icaoCarrierCode = icaoCarrierCode;
-        this.carrierCodeName = carrierCodeName;
-        this.remark = remark;
+        this.carrierCode = Objects.requireNonNull(carrierCode);
+        this.icaoCarrierCode = Objects.requireNonNull(icaoCarrierCode);
+        this.carrierCodeName = Objects.requireNonNull(carrierCodeName);
+        this.remark = Objects.requireNonNull(remark);
     }
 
     public String getCarrierCode() {
@@ -54,4 +57,20 @@ public class CarrierCodeEntity {
     public void setRemark(String remark) {
         this.remark = remark;
     }
+
+    public void update(CarrierCode carrierCode) {
+        icaoCarrierCode = carrierCode.icaoCarrierCode();
+        carrierCodeName = carrierCode.carrierCodeName();
+        remark = carrierCode.remark();
+    }
+
+//    @Override
+//    public String getId() {
+//        return carrierCode;
+//    }
+//
+//    @Override
+//    public boolean isNew() {
+//        return true;
+//    }
 }

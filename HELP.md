@@ -18,6 +18,9 @@ Infrastructure / domain / mdm-client
 
 
 
+domain.mdm 쪽만 모두 public
+infrastructure 는 모두 public 제외
+
 ########################## 도메인 - RestAPI
 ----------------- 순서
 CarrierCodeController -> CarrierCodeService -> CarrierCodeServiceImpl

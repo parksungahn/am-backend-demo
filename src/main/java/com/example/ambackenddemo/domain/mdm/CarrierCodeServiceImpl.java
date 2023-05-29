@@ -1,10 +1,7 @@
 package com.example.ambackenddemo.domain.mdm;
 
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
+import java.util.Optional;
 
 //@Service, @Repository, @Component  //--> 대신 CarrierCodeConfig
 public class CarrierCodeServiceImpl implements CarrierCodeService{
@@ -15,15 +12,29 @@ public class CarrierCodeServiceImpl implements CarrierCodeService{
         this.carrierCodeRepository = carrierCodeRepository;
     }
 
+
     @Override
-    public List<CarrierCode> retrieves()
-    {
-        return carrierCodeRepository.findall();
+    public List<CarrierCode> retrieves() {
+        return carrierCodeRepository.findAll();
     }
 
     @Override
-    public CarrierCode save(final CarrierCode carriercode)
-    {
-        return carrierCodeRepository.save(carriercode);
+    public Optional<CarrierCode> retriveById(final CarrierCodeId id) {
+        return carrierCodeRepository.findById(id);
+    }
+
+    @Override
+    public CarrierCode save(final CarrierCode carrierCode) {
+        return carrierCodeRepository.save(carrierCode);
+    }
+
+    @Override
+    public Optional<CarrierCode> update(final CarrierCode carrierCode) {
+        return carrierCodeRepository.update(carrierCode);
+    }
+
+    @Override
+    public void deleteById(CarrierCodeId id) {
+        carrierCodeRepository.deleteById(id);
     }
 }
