@@ -1,8 +1,6 @@
 package com.example.ambackenddemo.infrastructure.domina.mdm_server.controller;
 
-import com.example.ambackenddemo.domain.mdm.CarrierCode;
-import com.example.ambackenddemo.domain.mdm.CarrierCodeId;
-import com.example.ambackenddemo.domain.mdm.CarrierCodeService;
+import com.example.ambackenddemo.domain.mdm.*;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +32,16 @@ class CarrierCodeController {
     }
 
 
+    @GetMapping("/{carrierCode}")
+    ResponseEntity<CarrierCodeResponse> retrieve(@PathVariable(name = "carrierCode") final String carrierCode) {
+        return carrierCodeService.retriveById(new CarrierCodeId(carrierCode))
+                .map(CarrierCodeController::toResponse)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+
+
 
     //--신규저장1
 //    @PostMapping
@@ -62,15 +70,7 @@ class CarrierCodeController {
                 .body(toResponse(result));
     }
 
-    @GetMapping("/{carrierCode}")
-    ResponseEntity<CarrierCodeResponse> retrieve(@PathVariable(name = "carrierCode") final String carrierCode) {
-        return carrierCodeService.retriveById(new CarrierCodeId(carrierCode))
-                .map(CarrierCodeController::toResponse)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
-    }
-
-    @PostMapping("/{carrierCode}")
+    @PutMapping("/{carrierCode}")
     ResponseEntity<CarrierCodeResponse> update(@RequestBody CarrierCodeRequest request) {
         return carrierCodeService.update(fromRequest(request))
                 .map(CarrierCodeController::toResponse)
@@ -78,6 +78,7 @@ class CarrierCodeController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    //--http://localhost:8080/carrier_code/KE
     @DeleteMapping("/{carrierCode}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void delete(@PathVariable(name = "carrierCode") final String carrierCode) {

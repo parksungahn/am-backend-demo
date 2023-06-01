@@ -1,14 +1,14 @@
-package com.example.ambackenddemo.infrastructure.domina.mdm_server.controller;
+package com.example.ambackenddemo.domain.mdm;
 
 import java.util.Objects;
 
-record CarrierCodeRequest(String carrierCode,
+public record CarrierCodeRequest(String carrierCode,
                           String icaoCarrierCode,
                           String carrierCodeName,
                           String remark
 
 ) {
-    CarrierCodeRequest{
+    public CarrierCodeRequest{
         Objects.requireNonNull(carrierCode);
     }
 }
