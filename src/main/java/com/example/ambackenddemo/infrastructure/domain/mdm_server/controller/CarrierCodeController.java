@@ -1,4 +1,4 @@
-package com.example.ambackenddemo.infrastructure.domina.mdm_server.controller;
+package com.example.ambackenddemo.infrastructure.domain.mdm_server.controller;
 
 import com.example.ambackenddemo.domain.mdm.*;
 import org.springframework.dao.DataIntegrityViolationException;

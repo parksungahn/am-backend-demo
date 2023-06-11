@@ -1,4 +1,4 @@
-package com.example.ambackenddemo.infrastructure.domina.mdm_server.config;
+package com.example.ambackenddemo.infrastructure.domain.mdm_server.config;
 
 import com.example.ambackenddemo.domain.mdm.CarrierCodeRepository;
 import com.example.ambackenddemo.domain.mdm.CarrierCodeService;

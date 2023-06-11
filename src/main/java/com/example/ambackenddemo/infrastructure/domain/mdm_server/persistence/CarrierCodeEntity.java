@@ -1,4 +1,4 @@
-package com.example.ambackenddemo.infrastructure.domina.mdm_server.persistence.code;
+package com.example.ambackenddemo.infrastructure.domain.mdm_server.persistence;
 
 import com.example.ambackenddemo.domain.mdm.CarrierCode;
 import jakarta.persistence.Entity;
