@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public record CarrierCodeResponse(
         String carrierCode,
-        String icaoCarriercode,
+        String icaoCarrierCode,
         String carrierCodeName,
         String remark
 ) {
