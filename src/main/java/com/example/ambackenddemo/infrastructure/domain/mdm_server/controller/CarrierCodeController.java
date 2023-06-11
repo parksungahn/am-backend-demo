@@ -32,13 +32,13 @@ class CarrierCodeController {
     }
 
 
-    @GetMapping("/{carrierCode}")
-    ResponseEntity<CarrierCodeResponse> retrieve(@PathVariable(name = "carrierCode") final String carrierCode) {
-        return carrierCodeService.retriveById(new CarrierCodeId(carrierCode))
-                .map(CarrierCodeController::toResponse)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
-    }
+//    @GetMapping("/{carrierCode}")
+//    ResponseEntity<CarrierCodeResponse> retrieve(@PathVariable(name = "carrierCode") final String carrierCode) {
+//        return carrierCodeService.retriveById(new CarrierCodeId(carrierCode))
+//                .map(CarrierCodeController::toResponse)
+//                .map(ResponseEntity::ok)
+//                .orElse(ResponseEntity.notFound().build());
+//    }
 
 
 
